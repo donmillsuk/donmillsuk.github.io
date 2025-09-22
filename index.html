@@ -111,41 +111,40 @@
     .em-right-gallery{display:flex;gap:14px;justify-content:center;align-items:center;margin-top:14px;flex-wrap:wrap}
     .em-right-gallery img{width:min(46%,360px);height:220px;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
 
-    /* NEW: Address card photo (framed thumbnail) */
-    .address-photo{
-      display:block;
-      margin:12px auto 0;
-      max-width:90%;
-      height:200px;              /* framed height */
-      object-fit:cover;          /* neat crop */
-      border-radius:12px;
-      border:1px solid var(--border);
-      box-shadow:0 6px 16px rgba(0,0,0,.06);
-    }
-    .address-caption{
-      text-align:center;
-      color:#666;
-      font-size:14px;
-      margin-top:6px;
-    }
-    /* Responsive hero image overrides — paste directly above </style> */
+  /* NEW: Address card photo (framed thumbnail) */
+.address-photo{
+  display:block;
+  margin:12px auto 0;
+  max-width:90%;
+  height:200px;              /* framed height */
+  object-fit:cover;          /* neat crop */
+  border-radius:12px;
+  border:1px solid var(--border);
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+.address-caption{
+  text-align:center;
+  color:#666;
+  font-size:14px;
+  margin-top:6px;
+}
+
+/* Responsive hero image overrides */
 @media (max-width: 700px) {
   .hero{
     background: #222 url('assets/img/hero-mobile.jpg') center top / cover no-repeat;
-    background-attachment: scroll;
+    background-attachment: scroll; /* avoid jank on mobile */
     min-height: 70vh;
   }
 }
-
 @media (min-width: 701px) {
   .hero{
     background: #222 url('assets/img/hero.jpg') center / cover no-repeat fixed;
     min-height: 100vh;
   }
 }
+</style>
 
-    
-  </style>
 </head>
 <body>
 
