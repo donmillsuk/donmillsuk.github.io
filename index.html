@@ -128,6 +128,23 @@
       font-size:14px;
       margin-top:6px;
     }
+    /* Responsive hero image overrides — paste directly above </style> */
+@media (max-width: 700px) {
+  .hero{
+    background: #222 url('assets/img/hero-mobile.jpg') center top / cover no-repeat;
+    background-attachment: scroll;
+    min-height: 70vh;
+  }
+}
+
+@media (min-width: 701px) {
+  .hero{
+    background: #222 url('assets/img/hero.jpg') center / cover no-repeat fixed;
+    min-height: 100vh;
+  }
+}
+
+    
   </style>
 </head>
 <body>
