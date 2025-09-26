@@ -1,0 +1,759 @@
+
+# Constitution v10
+_Last updated: 2025-09-24_
+
+## Summary of Changes (v10)
+- Added **Q&A header graphic** inclusion instructions and CSS.
+- Image file: `assets/img/aqgraphic.jpg` (JPEG).
+- Placed **immediately above** the “Questions & Answers” heading inside `<section id="faq">`.
+- Added `.qa-graphic` CSS class with **50% width** to reduce visual size and keep responsive behavior.
+- Kept intrinsic dimensions `width="1365"` `height="2048"` on the `<img>` tag to avoid layout shift.
+- Performance: `loading="lazy"` and `decoding="async"` affirmed.
+- No other HTML content changes.
+
+## Implementation Details (FAQ section)
+**CSS (inside the same `<style>` of the `#faq` section):**
+```css
+.qa-graphic{
+  display:block;
+  margin:0 auto 16px;        /* center and gap under image */
+  width:50%;                 /* half width of container */
+  height:auto;               /* keep aspect ratio */
+  border-radius:12px;        /* matches card rounding */
+  border:1px solid var(--border, #e5e7eb);
+}
+```
+
+**HTML (inserted just before the `<h2>Questions &amp; Answers</h2>` line):**
+```html
+<img
+  src="assets/img/aqgraphic.jpg"
+  alt="Q &amp; A graphic for sewing machine repair"
+  class="qa-graphic"
+  width="1365" height="2048"
+  loading="lazy" decoding="async">
+```
+
+## Assets
+- `assets/img/aqgraphic.jpg` (new)
+- Existing asset structure remains unchanged.
+
+---
+
+
+# 🧵 Repair It Scotland — Website Constitution File
+**Version:** v9  
+**Last Updated:** 2025-09-23  
+**Author:** Don Mills / ChatGPT  
+**Project Status:** Live (GitHub Pages)
+
+---
+
+## 1) Change Summary (v9)
+- Added favicon link inside <head> (file `favicon.ico` or `repair.ico` at repo root).
+- Integrated Cloudflare Web Analytics (cookieless beacon) inside <head>.
+- Responsive hero: added mobile override with `assets/img/hero-mobile.jpg` and media queries.
+- Footer links now point to real pages (`privacy.html`, `terms.html`) rather than `#`.
+- FAQ accordion with JSON-LD remains in place (no content changes since v8).
+
+---
+
+## 2) Current Folder Structure (expected)
+```
+/
+├── index.html                (this snapshot — authoritative)
+├── privacy.html
+├── terms.html
+├── favicon.ico (or repair.ico)
+├── assets/
+│   └── img/
+│       ├── hero.jpg
+│       ├── hero-mobile.jpg
+│       ├── shead.png
+│       ├── emerg.jpg
+│       ├── spool.jpg
+│       ├── head.jpg
+│       └── qrwa.png
+└── video/
+    └── Video_Revision_Request.mp4
+```
+
+---
+
+## 3) Version Log
+- v9 — Favicon in head; Cloudflare Web Analytics beacon; responsive hero (mobile image + media queries); footer Privacy/Terms now real pages; minor copy tweaks.
+- v8 — Q&A accordion + FAQPage JSON-LD integrated (snapshot `index v4.html`).
+
+---
+
+## 🔒 Authoritative HTML Snapshot — `index.html`
+**Checksum (MD5):** `74acc3190ca417bf459800f5691e2314`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="utf-8">
+  <title>Repair It Scotland – Trusted Sewing Machine Repairs in Dundee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Trusted Sewing Machine Repairs in Dundee. 50 years of hands-on expertise – if it has a needle, I’ll work on it. Call 07577 255713.">
+  <meta name="format-detection" content="telephone=no">
+
+<link rel="icon" href="repair.ico">
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "52a37f6c72884115aa915088f2ee07ee"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+
+
+
+
+  <style>
+    :root{
+      --bg-overlay: rgba(0,0,0,.65);
+      --text:#111; --muted:#555; --light:#f7f7f7;
+      --brand:#0d5c63; --brand-contrast:#fff;
+      --maxw:1120px; --radius:16px;
+      --accent-red:#e5383b; --accent-green:#2e7d32;
+      --star:#f5a524; --border:#e9e9e9; --card:#fff;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6;color:var(--text);background:#fff}
+    a{color:var(--brand);text-decoration:none}
+    a:focus,button:focus{outline:3px solid #9bd1d4;outline-offset:2px}
+
+    .container{max-width:var(--maxw);margin:0 auto;padding:24px}
+
+    .btn{display:inline-block;padding:14px 22px;border-radius:999px;background:var(--brand);color:var(--brand-contrast);font-weight:700;border:2px solid var(--brand);transition:.2s}
+    .btn:hover{filter:brightness(1.05)}
+    .btn.secondary{background:transparent;color:var(--brand);border-color:var(--brand)}
+    .btn.alert{background:var(--accent-red);border-color:var(--accent-red)}
+
+    .tagrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;justify-content:center}
+    .tag{background:#ffffffb3;border:1px solid #ffffff66;color:#111;padding:8px 12px;border-radius:999px;font-weight:600}
+
+    /* HERO */
+
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;color:#fff;background:#222 url('assets/img/hero.jpg') center/cover no-repeat fixed}
+
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,var(--bg-overlay) 65%)}
+    .hero-content{position:relative;z-index:1}
+    .hero h1{font-size:clamp(32px,6vw,56px);margin:0 0 12px;font-weight:900}
+    .hero p.sub{font-size:clamp(18px,2.6vw,24px);margin:0 0 22px;font-weight:500}
+    .cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:8px 0 6px}
+    .phone{font-size:clamp(18px,2.6vw,22px);font-weight:800;background:#ffffff1a;padding:10px 14px;border-radius:10px;border:1px solid #ffffff33;color:#fff}
+    .scroll-down{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:84px;color:#fff;opacity:.9;animation:bounce 2s infinite;line-height:1}
+    @keyframes bounce{0%,20%,50%,80%,100%{transform:translate(-50%,0)}40%{transform:translate(-50%,20px)}60%{transform:translate(-50%,10px)}}
+
+    section{padding:56px 0}
+    .section-alt{background:var(--light)}
+    h2{font-size:clamp(24px,4vw,34px);margin:0 0 10px;font-weight:900}
+    .lead{color:var(--muted);max-width:900px}
+
+    /* Simple, reliable grids */
+    .grid{display:grid;gap:20px}
+    .about-grid{grid-template-columns:1fr}
+    .contact-grid{grid-template-columns:1fr}
+    .em-grid{grid-template-columns:1fr}
+    .reviews-grid{display:grid;gap:16px;grid-template-columns:1fr}
+
+    @media (min-width:900px){
+      .about-grid{grid-template-columns:7fr 5fr}
+      .contact-grid{grid-template-columns:6fr 6fr}
+      .em-grid{grid-template-columns:5fr 7fr}
+      .reviews-grid{grid-template-columns:1fr 1fr}
+    }
+
+    .card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:20px;box-shadow:0 8px 20px rgba(0,0,0,.04)}
+
+    /* FREE Inspections heading */
+    .notice-heading{margin:26px 0 10px;font-weight:900;color:var(--accent-red);text-transform:uppercase;letter-spacing:.5px;text-decoration:underline;text-underline-offset:4px;font-size:clamp(18px,3vw,22px)}
+
+    /* Checklist with green checkmarks */
+    .checklist{margin:8px 0 0;padding-left:0;list-style:none}
+    .checklist li{display:flex;gap:10px;margin:10px 0}
+    .checkmark{flex:0 0 22px}
+    .checkmark svg{width:22px;height:22px;fill:var(--accent-green)}
+
+    /* Drop-off note */
+    .dropoff-note{font-weight:900;text-align:center;margin-top:10px}
+
+    /* Contact & QR */
+    .contact-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .qrimg{width:140px;height:140px;border:1px solid #e0e0e0;border-radius:12px;background:#fff;object-fit:contain;padding:6px}
+
+    /* Facebook */
+    .fb-consent{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fff}
+    .fb-embed{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;min-height:280px;display:none}
+    .fb-note{color:#555;margin:6px 0 14px}
+    .fb-fallback{display:none;color:#b00}
+
+    /* Map lazy */
+    .mapwrap{margin-top:12px}
+    .map-placeholder{border:1px dashed #ccc;border-radius:12px;padding:20px;text-align:center;color:#555}
+    .map-placeholder button{margin-top:10px}
+
+    /* Testimonials */
+    .stars{color:var(--star);font-size:18px}
+    .review{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px}
+
+    /* Emergency section visuals */
+    .em-gif{width:100%;border-radius:14px;border:1px solid var(--border);object-fit:cover;max-height:460px}
+    .em-aux{width:100%;border-radius:14px;border:1px solid var(--border);object-fit:cover;margin-top:12px;max-height:260px}
+    .em-title{color:var(--accent-red);font-weight:900;text-transform:uppercase;margin:0 0 6px}
+    .em-sub{color:#083d77;font-size:28px;font-weight:900;margin:6px 0 10px}
+    .em-call{font-weight:900;font-size:clamp(24px,4.6vw,40px);color:var(--accent-red);margin-top:6px}
+    .em-right-gallery{display:flex;gap:14px;justify-content:center;align-items:center;margin-top:14px;flex-wrap:wrap}
+    .em-right-gallery img{width:min(46%,360px);height:220px;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
+
+  /* NEW: Address card photo (framed thumbnail) */
+.address-photo{
+  display:block;
+  margin:12px auto 0;
+  max-width:90%;
+  height:200px;              /* framed height */
+  object-fit:cover;          /* neat crop */
+  border-radius:12px;
+  border:1px solid var(--border);
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+.address-caption{
+  text-align:center;
+  color:#666;
+  font-size:14px;
+  margin-top:6px;
+}
+
+/* Responsive hero image overrides */
+@media (max-width: 700px) {
+  .hero{
+    background: #222 url('assets/img/hero-mobile.jpg') center top / cover no-repeat;
+    background-attachment: scroll; /* avoid jank on mobile */
+    min-height: 70vh;
+  }
+}
+@media (min-width: 701px) {
+  .hero{
+    background: #222 url('assets/img/hero.jpg') center / cover no-repeat fixed;
+    min-height: 100vh;
+  }
+}
+</style>
+
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-content">
+      <h1>Trusted Sewing Machine Repairs in Dundee</h1>
+      <p class="sub">50 years of hands-on expertise – if it has a needle, I’ll work on it.</p>
+      <div class="cta">
+        <a class="btn" href="tel:+447577255713">Call Now</a>
+        <a class="btn alert" href="#emergency" aria-label="Emergency Help">Emergency Help</a>
+        <div class="phone">07577 255713</div>
+      </div>
+      <div class="tagrow">
+        <span class="tag">Dundee & Nearby Areas</span>
+        <span class="tag">All Major Brands</span>
+        <span class="tag">Fast, Honest Turnarounds</span>
+      </div>
+    </div>
+    <a class="scroll-down" href="#about">↓</a>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="section-alt">
+    <div class="container">
+      <div class="grid about-grid">
+        <div>
+          <h2>Why Choose Repair It Scotland</h2>
+          <p class="lead">
+            For more than 50 years I’ve been repairing, servicing, and restoring sewing machines of every make and model . Based in Dundee, I provide a friendly and reliable repair service for customers across the city and nearby areas such as Broughty Ferry, Forfar, and Arbroath.
+            As one of the few dedicated sewing machine repair specialists in Scotland, my workshop combines decades of hands-on knowledge with modern diagnostic tools. Every repair begins with a free inspection and no-obligation estimate, so you always know what work is needed and what it will cost before I start.
+            Customers choose Repair It Scotland because they trust my experience, appreciate clear and honest communication, and value fast turnaround times. Whether your machine needs a simple tune-up, a part replaced, or a full mechanical overhaul, you’ll get expert care from someone who knows sewing machines inside and out.
+          </p>
+
+          <h3 class="notice-heading">FREE Inspections With No Obligation Estimate</h3>
+          <ul class="checklist">
+            <li><span class="checkmark"><svg viewBox="0 0 24 24"><path d="M20.285 6.709l-11.285 11.292-5.285-5.292 1.415-1.415 3.87 3.877 9.87-9.877z"/></svg></span> Tension Adjustment Check</li>
+            <li><span class="checkmark"><svg viewBox="0 0 24 24"><path d="M20.285 6.709l-11.285 11.292-5.285-5.292 1.415-1.415 3.87 3.877 9.87-9.877z"/></svg></span> Internal Inspection with endoscope</li>
+            <li><span class="checkmark"><svg viewBox="0 0 24 24"><path d="M20.285 6.709l-11.285 11.292-5.285-5.292 1.415-1.415 3.87 3.877 9.87-9.877z"/></svg></span> Bobbin Case and Hook Inspection</li>
+            <li><span class="checkmark"><svg viewBox="0 0 24 24"><path d="M20.285 6.709l-11.285 11.292-5.285-5.292 1.415-1.415 3.87 3.877 9.87-9.877z"/></svg></span> Electrical Systems Check</li>
+            <li><span class="checkmark"><svg viewBox="0 0 24 24"><path d="M20.285 6.709l-11.285 11.292-5.285-5.292 1.415-1.415 3.87 3.877 9.87-9.877z"/></svg></span> General Mechanical Inspection</li>
+          </ul>
+        </div>
+
+        <aside class="card">
+          <h3>Address &amp; Hours</h3>
+          <p><strong>Address:</strong> 4 Saint Lukes Road, Dundee, DD3 0LD</p>
+          <p><strong>Hours:</strong> Mon–Fri 8:00–17:00 (by appointment)</p>
+          <p class="dropoff-note">Please call or message to book a drop-off time so someone’s definitely in. I am a home workshop and not always in.</p>
+
+          <!-- NEW: framed thumbnail under the hours -->
+          <img src="assets/img/shead.png" alt="Home workshop bench" class="address-photo">
+          <div class="address-caption">Could be my space—just not yet.</div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMERGENCY REPAIR -->
+  <section id="emergency">
+    <div class="container">
+      <div class="grid em-grid">
+        <!-- LEFT: GIF + EMERGENCY graphic -->
+        <div>
+          <!-- Video replacement for the old GIF -->
+<video class="em-gif"
+       src="video/Video_Revision_Request.mp4"
+       autoplay
+       playsinline
+       muted
+       loop
+       preload="metadata"
+       poster="assets/img/emerg.jpg"
+       aria-label="Calming breathing animation">
+  <!-- Fallback for very old browsers -->
+  <img src="assets/img/emerg.jpg" alt="Calming breathing animation">
+</video>
+
+<!-- Optional supporting image below the video (keep if you like the two-image layout) -->
+<img class="em-aux" src="assets/img/emerg.jpg" alt="Emergency banner">
+
+
+
+         
+        </div>
+
+        <!-- RIGHT: text + two centered photos -->
+        <div>
+          <h2 class="em-title">EMERGENCIES, HELP &amp; SERVICE</h2>
+          <div class="em-sub">First Breathe</div>
+          <p>I can usually help and get your machine working, and I can collect/return your machine on a rush basis if needed. It won't be as cheap as regular repair service, but sometimes speed matters.</p>
+          <p><strong>Emergencies require a person on the other end of a phone call.</strong> Please call for emergencies — don’t message — <strong>just call!</strong></p>
+          <div style="margin-top:8px">So let’s get this going</div>
+          <div class="em-call"><a href="tel:+447577255713">Call me… Don — 07577 255713</a></div>
+
+          <div class="em-right-gallery">
+            <img src="assets/img/spool.jpg" alt="Close-up of spool and thread issue">
+            <img src="assets/img/head.jpg" alt="Machine head repair example">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="reviews" class="section-alt">
+    <div class="container">
+      <h2>What Local Customers Say</h2>
+      <p class="lead">A few recent Google reviews from Dundee and nearby areas.</p>
+
+      <div class="reviews-grid">
+        <article class="review">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div><strong>Britta Bloomquist</strong> <span style="color:#888">• Local Guide</span></div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          </div>
+          <p style="margin:.3rem 0 0;color:#777">8 weeks ago</p>
+          <p>Incredibly friendly and so helpful! Didn’t give up on trying to fix my machine and I’m so grateful to have found him. Highly recommend.</p>
+          <div style="margin-top:8px;padding-left:10px;border-left:3px solid #eee;color:#444"><em>Owner reply:</em> Thanks it was super fun to work on your machine thanks Don Mills</div>
+        </article>
+
+        <article class="review">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div><strong>Lesley Cameron</strong></div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          </div>
+          <p style="margin:.3rem 0 0;color:#777">15 weeks ago</p>
+          <p>I'm really glad that I found Don. He is so helpful, friendly and knowledgeable. He serviced my machine really quickly…</p>
+          <div style="margin-top:8px;padding-left:10px;border-left:3px solid #eee;color:#444"><em>Owner reply:</em> Thank you so much, Lesley! It was a real pleasure meeting you and working on your machine. I'm really glad I could help…</div>
+        </article>
+
+        <article class="review">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div><strong>Marios Stavridis</strong></div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          </div>
+          <p style="margin:.3rem 0 0;color:#777">18 weeks ago</p>
+          <p>Highly recommend. Repaired an old machine and when it shook itself out of timing again (user error!) Don kindly came and re-repaired it and explained why this had happened. Great communications, great price.</p>
+          <div style="margin-top:8px;padding-left:10px;border-left:3px solid #eee;color:#444"><em>Owner reply:</em> Thanks so much for a nice review, happy to have helped.</div>
+        </article>
+
+        <article class="review">
+          <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div><strong>JOHN GREGORY</strong> <span style="color:#888">• Local Guide</span></div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          </div>
+          <p style="margin:.3rem 0 0;color:#777">19 weeks ago</p>
+          <p>Brilliant service from Don at Repair it Scotland. Quick turnaround.</p>
+          <div style="margin-top:8px;padding-left:10px;border-left:3px solid #eee;color:#444"><em>Owner reply:</em> Thanks so glad you are happy.</div>
+        </article>
+      </div>
+
+      <div style="margin-top:16px">
+        <a class="btn secondary" target="_blank" rel="noopener"
+           href="https://www.google.com/search?q=Repair+It+Scotland+Dundee+reviews">
+          Read more reviews on Google
+        </a>
+      </div>
+    </div>
+  </section>
+
+    <!-- Q&A -->
+  <section id="faq">
+    <!-- FAQ styles kept inside this section so only the Q&A area is changed -->
+    <style>
+    .accordion details{
+      border:1px solid var(--border, #e5e7eb);
+      border-radius:12px;
+      padding:14px 16px;
+      background:#fff;
+    }
+    .accordion details + details{ margin-top:12px }
+    .accordion summary{
+      cursor:pointer;
+      font-weight:800;
+      outline:none;
+      list-style:none;
+    }
+    .accordion summary::-webkit-details-marker{ display:none }
+    .accordion summary::after{
+      content:"+";
+      float:right;
+      font-weight:900;
+      transition:transform .2s;
+    }
+    .accordion details[open] summary::after{ content:"–" }
+    .accordion p, .accordion ul{
+      color:var(--muted, #4b5563);
+      margin:10px 0 0;
+    }
+    .accordion ul{ padding-left:18px }
+    </style>
+
+    <div class="container">
+      <h2>Questions &amp; Answers</h2>
+      <p class="lead">Everything you’re likely to ask before booking a repair. If you don’t see your question here, call 07577 255713.</p>
+
+      <div class="accordion" itemscope itemtype="https://schema.org/FAQPage">
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">Where can I get my sewing machine repaired in Dundee?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">You can bring your sewing machine to my home workshop in the Downfield area of Dundee. I work from home to keep costs affordable, and there is plenty of parking right outside. Look for the small sign that says <strong>Sewing Machine Repair</strong> — it’s visible from the road.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">What areas near Dundee do you service?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">I regularly see customers from Broughty Ferry, Arbroath, Forfar, Kirriemuir, Perth, Coupar Angus, Carnoustie, and Monifieth. I can arrange pickup/delivery if needed. No domestic house calls, but I do business site visits case-by-case.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">How much does repair cost?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">It depends on the machine (mechanical/electronic/computerised). Minor fixes can be ~£10; more involved jobs with parts can exceed £100. Most Dundee repairs land around <strong>£40–£70</strong> including standard parts.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">How long does repair usually take?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Typical turnaround is <strong>5–7 days</strong>. I offer an emergency option; if no parts are needed, many jobs finish within <strong>24 hours</strong>. If parts are required, timing depends on supplier stock and rush shipping.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">Do you repair all brands and models?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Yes — if it has a needle, I’ll work on it. I service mechanical, electronic, and many computerised models. For very high-end computerised machines, I’ll give a free evaluation and advise the best route (including manufacturer options if appropriate).</p>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">Can you repair vintage sewing machines?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Yes. I handle both repairs and (when requested) restorations. Many customers choose repair for sentimental reasons—family heirlooms and classic models usually run beautifully again after service.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">Do I need an appointment or can I drop in?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Please <strong>book an appointment</strong> for both drop-off and pickup (home workshop). If you arrive without one and I’m in, I’ll help—but I may be out. Booking avoids wasted trips and guarantees I’m available.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">What common problems do you fix?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Timing and tension issues, skipped stitches, electrical faults, and “needs a deep clean/oil.” Many faults overlap and are prevented by regular servicing.</p>
+            <ul>
+              <li>Timing problems</li>
+              <li>Tension issues</li>
+              <li>Skipped stitches</li>
+              <li>Electrical faults</li>
+              <li>Cleaning &amp; oiling service</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">Do you provide a warranty?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Yes—generally a <strong>30-day warranty</strong> on repair work. Supplier warranties apply to parts (labour for replacement not included). Misuse isn’t covered. If a repair is found deficient, I’ll take care of it.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">Can I drop off without an appointment?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Walk-ins aren’t accepted. If you catch me in, I’ll help, but I may be out. Best to book first.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">Do you service &amp; clean machines as well?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Yes. Full servicing includes thorough cleaning, correct oiling, and checking timing/tension to prevent common issues.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">What should I bring with my machine?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">Please include:</p>
+            <ul>
+              <li>Foot control (pedal)</li>
+              <li>An empty bobbin and the bobbin case</li>
+              <li>A regular presser foot (zigzag foot if your machine zigzags)</li>
+            </ul>
+            <p itemprop="text">Keep covers, manuals, and extra attachments unless needed for testing.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+            <span itemprop="name">Do you sell machines or accept trade-ins?</span>
+          </summary>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <p itemprop="text">No sales or trade-ins. That keeps my advice unbiased. Occasionally I accept a donated machine; suitable models are serviced and passed to a local charity that teaches sewing.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+
+    <!-- JSON-LD: FAQPage (kept adjacent to the FAQ section) -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Where can I get my sewing machine repaired in Dundee?","acceptedAnswer":{"@type":"Answer","text":"Bring your machine to my home workshop in the Downfield area with easy parking. Look for the 'Sewing Machine Repair' sign visible from the road."}},
+        {"@type":"Question","name":"What areas near Dundee do you service?","acceptedAnswer":{"@type":"Answer","text":"Broughty Ferry, Arbroath, Forfar, Kirriemuir, Perth, Coupar Angus, Carnoustie, Monifieth. Pickup/delivery available. Business site visits case-by-case."}},
+        {"@type":"Question","name":"How much does repair cost?","acceptedAnswer":{"@type":"Answer","text":"Minor fixes ~£10; involved work with parts can exceed £100. Most repairs are £40–£70 including standard parts."}},
+        {"@type":"Question","name":"How long does repair take?","acceptedAnswer":{"@type":"Answer","text":"Typical turnaround 5–7 days. Emergency option available; many no-part jobs within 24 hours. Parts wait depends on supplier and rush shipping."}},
+        {"@type":"Question","name":"Do you repair all brands and models?","acceptedAnswer":{"@type":"Answer","text":"Yes—mechanical, electronic, and many computerised machines. I’ll evaluate high-end models and advise best options."}},
+        {"@type":"Question","name":"Can you repair vintage machines?","acceptedAnswer":{"@type":"Answer","text":"Yes. I handle both repairs and, when requested, restorations. Heirlooms often run beautifully again after service."}},
+        {"@type":"Question","name":"Do I need an appointment?","acceptedAnswer":{"@type":"Answer","text":"Yes—please book for drop-off and pickup. Walk-ins risk missing me if I’m out."}},
+        {"@type":"Question","name":"What common problems do you fix?","acceptedAnswer":{"@type":"Answer","text":"Timing, tension, skipped stitches, electrical faults, and deep clean/oil servicing."}},
+        {"@type":"Question","name":"Do you provide a warranty?","acceptedAnswer":{"@type":"Answer","text":"Generally a 30-day warranty on repair work. Parts follow supplier warranties; misuse not covered."}},
+        {"@type":"Question","name":"Can I drop off without an appointment?","acceptedAnswer":{"@type":"Answer","text":"No—please book first to avoid wasted trips. I’ll help if I’m in, but I may be out."}},
+        {"@type":"Question","name":"Do you service & clean machines?","acceptedAnswer":{"@type":"Answer","text":"Yes—full servicing includes cleaning, oiling, and checking timing/tension."}},
+        {"@type":"Question","name":"What should I bring with my machine?","acceptedAnswer":{"@type":"Answer","text":"Foot control (pedal), empty bobbin and bobbin case, and a regular (or zigzag) presser foot. Keep covers/manuals unless needed."}},
+        {"@type":"Question","name":"Do you sell machines or accept trade-ins?","acceptedAnswer":{"@type":"Answer","text":"No sales or trade-ins. Occasionally I accept a suitable donated machine and pass it to a local sewing charity after service."}}
+      ]
+    }
+    </script>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-alt">
+    <div class="container">
+      <div class="grid contact-grid">
+        <div>
+          <h2>Contact &amp; Booking</h2>
+          <div class="contact-options">
+            <div class="contact-row">
+              <a class="btn" href="tel:+447577255713">Call: 07577 255713</a>
+            </div>
+            <div class="contact-row">
+              <a class="btn secondary" href="https://wa.me/447577255713?text=hay%20don%20i%20have%20a%20sewing%20machine%20question" target="_blank" rel="noopener">Message on WhatsApp</a>
+              <img src="assets/img/qrwa.png" alt="Scan to WhatsApp" class="qrimg">
+            </div>
+
+            <!-- Facebook Page: click-to-enable -->
+            <div class="fb-consent" id="fb-consent">
+              <h3 style="margin:0 0 6px">Facebook Page Feed</h3>
+              <p class="fb-note">To see live posts from my Facebook Page, click Enable. Facebook may set cookies to show this content.</p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button class="btn" id="enable-fb">Enable Facebook Feed</button>
+                <a class="btn secondary" href="https://www.facebook.com/profile.php?id=61573728669763" target="_blank" rel="noopener">Open Page on Facebook</a>
+              </div>
+              <div class="fb-fallback" id="fb-fallback">If the feed does not appear, open the Page directly on Facebook.</div>
+            </div>
+
+            <div class="fb-embed" id="fb-embed">
+              <div id="fb-root"></div>
+              <div class="fb-page"
+                   data-href="https://www.facebook.com/profile.php?id=61573728669763"
+                   data-tabs="timeline"
+                   data-width="500"
+                   data-height="520"
+                   data-small-header="false"
+                   data-adapt-container-width="true"
+                   data-hide-cover="false"
+                   data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/profile.php?id=61573728669763" class="fb-xfbml-parse-ignore">
+                  <a href="https://www.facebook.com/profile.php?id=61573728669763">Facebook Page</a>
+                </blockquote>
+              </div>
+              <div style="margin:12px 0 0">
+                <a class="btn secondary" href="https://www.facebook.com/groups/dundeesewingmachinerepair" target="_blank" rel="noopener">Join our Facebook Group</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card">
+          <h3>Find Us</h3>
+          <p><strong>Address:</strong> 4 Saint Lukes Road, Dundee, DD3 0LD</p>
+          <p><strong>Hours:</strong> Mon–Fri 8:00–17:00 (by appointment)</p>
+          <p class="dropoff-note">Please call or message to book a drop-off time so someone’s definitely in. I am a home workshop and not always in.</p>
+
+          <!-- Map lazy-load button -->
+          <div class="mapwrap">
+            <div class="map-placeholder" id="map-placeholder">
+              <div>📍 Google Map is disabled until you click</div>
+              <button class="btn secondary" id="show-map">Click to Show Map</button>
+            </div>
+            <div id="map-frame" style="display:none;margin-top:12px"></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap">
+    <div>© <span id="y"></span> Repair It Scotland — <em>Sewing Machine Repair in Dundee</em></div>
+    <div style="display:flex;gap:12px">
+      <a href="privacy.html">Privacy</a>
+      <span style="color:#bbb">|</span>
+      <a href="terms.html">Terms</a>
+    </div>
+  </div>
+</footer>
+
+  <!-- Sticky bar (mobile) -->
+  <nav class="stickybar" style="display:none"></nav>
+
+  <script>
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Lazy-load map (remembers consent)
+    const btn = document.getElementById('show-map');
+    if (btn){
+      btn.addEventListener('click', ()=>{
+        document.getElementById('map-placeholder').style.display='none';
+        const map = document.getElementById('map-frame');
+        map.style.display='block';
+        map.innerHTML = `<iframe title="Map to Repair It Scotland" loading="lazy" style="border:0;width:100%;height:350px;border-radius:12px" src="https://www.google.com/maps?q=4%20Saint%20Lukes%20Road%2C%20Dundee%2C%20DD3%200LD&output=embed"></iframe>`;
+        localStorage.setItem('map_enabled','1');
+      });
+      if(localStorage.getItem('map_enabled')==='1'){
+        document.getElementById('map-placeholder').style.display='none';
+        const map = document.getElementById('map-frame');
+        map.style.display='block';
+        map.innerHTML = `<iframe title="Map to Repair It Scotland" loading="lazy" style="border:0;width:100%;height:350px;border-radius:12px" src="https://www.google.com/maps?q=4%20Saint%20Lukes%20Road%2C%20Dundee%2C%20DD3%200LD&output=embed"></iframe>`;
+      }
+    }
+
+    // Facebook consent loader
+    const fbConsentKey = 'fb_consent_enabled';
+    const fbConsent = localStorage.getItem(fbConsentKey) === '1';
+    const consentBox = document.getElementById('fb-consent');
+    const fbEmbed = document.getElementById('fb-embed');
+    const fbFallback = document.getElementById('fb-fallback');
+    const enableBtn = document.getElementById('enable-fb');
+
+    function loadFacebookSDK() {
+      if (window.FB) { try { FB.XFBML.parse(fbEmbed); } catch(e){} return; }
+      const js = document.createElement('script');
+      js.async = true; js.defer = true; js.crossOrigin = 'anonymous';
+      js.src = "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v18.0";
+      js.onload = function(){ try { FB.XFBML.parse(fbEmbed); } catch(e){ if(fbFallback) fbFallback.style.display = 'block'; } };
+      js.onerror = function(){ if(fbFallback) fbFallback.style.display = 'block'; };
+      document.body.appendChild(js);
+    }
+    function enableFacebook() {
+      localStorage.setItem(fbConsentKey, '1');
+      if(consentBox) consentBox.style.display = 'none';
+      if(fbEmbed) fbEmbed.style.display = 'block';
+      loadFacebookSDK();
+    }
+    if (fbConsent) { if(consentBox) consentBox.style.display = 'none'; if(fbEmbed) fbEmbed.style.display = 'block'; loadFacebookSDK(); }
+    else if (enableBtn) { enableBtn.addEventListener('click', enableFacebook); }
+  </script>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Repair It Scotland",
+    "telephone": "+44 7577 255713",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "4 Saint Lukes Road",
+      "addressLocality": "Dundee",
+      "postalCode": "DD3 0LD",
+      "addressCountry": "GB"
+    },
+    "areaServed": "Dundee and nearby areas",
+    "openingHours": "Mo-Fr 08:00-17:00",
+    "priceRange": "££"
+  }
+  </script>
+</body>
+</html>
+
+```
