@@ -678,24 +678,41 @@
     "openingHours": "Mo-Fr 08:00-17:00",
     "priceRange": "££"
   }
-  </script>
- 
 <script>
-   console.log("Logger script loaded");
+/* Site visit logger (beacon with fetch fallback) */
+(function () {
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyqFqlSuaB7e_VH6BIORK3JgJ3uHGYDLWwjqixU8CcB47OQCtxuqY1Ctb1aCDZt1geU/exec";
 
-  const params = new URLSearchParams({
-    userAgent: navigator.userAgent,
-    referrer: document.referrer,
-    page: window.location.href
-  });
+  function buildParams() {
+    return new URLSearchParams({
+      userAgent: navigator.userAgent,
+      referrer: document.referrer || "None",
+      page: location.href
+    }).toString();
+  }
 
-  fetch("https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec?" + params.toString())
-    .then(() => {
-      console.log("Logger GET request sent");
-    })
-    .catch(err => {
-      console.error("Logger GET request failed:", err);
-    });
+  function sendHit() {
+    const qs = buildParams();
+
+    // Try Beacon (quiet, reliable on unload)
+    try {
+      if (navigator.sendBeacon && navigator.sendBeacon(WEB_APP_URL + "?" + qs, "")) {
+        return; // sent via Beacon
+      }
+    } catch (_) { /* fall through */ }
+
+    // Fallback: POST without preflight; response will be opaque (that's fine)
+    fetch(WEB_APP_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: qs
+    }).catch(() => {});
+  }
+
+  if (document.readyState === "complete") sendHit();
+  else window.addEventListener("load", sendHit);
+})();
 </script>
 </body>
 </html>
