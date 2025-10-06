@@ -679,5 +679,21 @@
     "priceRange": "££"
   }
   </script>
+ 
+<script>
+  fetch("https://script.google.com/macros/s/AKfycbyqFqlSuaB7e_VH6BIORK3JgJ3uHGYDLWwjqixU8CcB47OQCtxuqY1Ctb1aCDZt1geU/exec", {
+    method: "POST",
+    body: JSON.stringify({
+      userAgent: navigator.userAgent,
+      referrer: document.referrer,
+      page: window.location.href
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+</script>
+</body>
+  
 </body>
 </html>
