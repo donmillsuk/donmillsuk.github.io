@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- VERSION: v2.1 | Local business structured data corrected | 2026-09-13 -->
+<!-- VERSION: v2.2 | Mobile Google Maps directions added | 2026-09-13 -->
 <html lang="en">
 
 <head>
@@ -10,7 +10,7 @@
   <meta name="format-detection" content="telephone=no">
 
 <!-- LAST UPDATED: 2026-09-13 -->
-<meta name="site-version" content="v2.1 - 2026-09-13">
+<meta name="site-version" content="v2.2 - 2026-09-13">
 <link rel="canonical" href="https://repairitscotland.com/">
 
 
@@ -39,6 +39,7 @@
     "addressRegion": "Scotland",
     "addressCountry": "GB"
   },
+  "hasMap": "https://www.google.com/maps/dir/?api=1&destination=2%20Haldane%20Place%2C%20Dundee%2C%20DD3%200JR",
   "areaServed": [
     "Dundee",
     "Broughty Ferry",
@@ -169,6 +170,7 @@
     .location-status.appointment{color:#b42318;background:#fff1f0;border:2px solid #e5383b}
     .location-status.walkin{color:#1b5e20;background:#f0f8f1;border:2px solid #2e7d32}
     .location-card p:last-child{margin-bottom:0}
+    .directions-btn{margin-top:14px}
     .locations-note{margin:16px 0 0;padding:14px;border-left:4px solid var(--brand);background:#fff;font-weight:700}
 
     /* Contact & QR */
@@ -180,11 +182,6 @@
     .fb-embed{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;min-height:280px;display:none}
     .fb-note{color:#555;margin:6px 0 14px}
     .fb-fallback{display:none;color:#b00}
-
-    /* Map lazy */
-    .mapwrap{margin-top:12px}
-    .map-placeholder{border:1px dashed #ccc;border-radius:12px;padding:20px;text-align:center;color:#555}
-    .map-placeholder button{margin-top:10px}
 
     /* Testimonials */
     .stars{color:var(--star);font-size:18px}
@@ -242,6 +239,7 @@
   .scroll-down{bottom:8px;font-size:56px}
   .qrimg{display:none}
   .quick-call .btn{width:100%}
+  .directions-btn{width:100%}
   #locations, #contact{scroll-margin-top:12px}
   .stickybar{
     position:fixed;
@@ -420,6 +418,7 @@
           <p class="location-address">2 Haldane Place, Dundee, DD3 0JR</p>
           <div class="location-status appointment">BY APPOINTMENT ONLY</div>
           <p>Please call or message first to receive the booking-calendar link.</p>
+          <a class="btn secondary directions-btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=2%20Haldane%20Place%2C%20Dundee%2C%20DD3%200JR" target="_blank" rel="noopener" aria-label="Get directions to the Dundee location">Get Directions</a>
         </article>
 
         <article class="location-card">
@@ -427,6 +426,7 @@
           <p class="location-address">Milnholm, The Row, Letham, Cupar, Fife, KY15 7RS</p>
           <div class="location-status appointment">BY APPOINTMENT ONLY</div>
           <p>Please call or message first to receive the booking-calendar link.</p>
+          <a class="btn secondary directions-btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Milnholm%2C%20The%20Row%2C%20Letham%2C%20Cupar%2C%20Fife%2C%20KY15%207RS" target="_blank" rel="noopener" aria-label="Get directions to the Letham, Fife home workshop">Get Directions</a>
         </article>
 
         <article class="location-card">
@@ -434,6 +434,7 @@
           <p class="location-address">11 Auldbar Road, Letham, Forfar, DD8 2PD</p>
           <div class="location-status walkin">NO APPOINTMENT NEEDED</div>
           <p>Drop off or collect your machine during the shop’s normal opening hours.</p>
+          <a class="btn secondary directions-btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=11%20Auldbar%20Road%2C%20Letham%2C%20Forfar%2C%20DD8%202PD" target="_blank" rel="noopener" aria-label="Get directions to Letham Crafts">Get Directions</a>
         </article>
 
         <article class="location-card">
@@ -441,6 +442,7 @@
           <p class="location-address">305 High Street, Kirkcaldy, KY1 1JL</p>
           <div class="location-status walkin">NO APPOINTMENT NEEDED</div>
           <p>Drop off or collect your machine during the shop’s normal opening hours.</p>
+          <a class="btn secondary directions-btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=305%20High%20Street%2C%20Kirkcaldy%2C%20KY1%201JL" target="_blank" rel="noopener" aria-label="Get directions to Topstitch Kirkcaldy">Get Directions</a>
         </article>
       </div>
 
@@ -796,24 +798,6 @@
   <script>
     // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Lazy-load map (remembers consent)
-    const btn = document.getElementById('show-map');
-    if (btn){
-      btn.addEventListener('click', ()=>{
-        document.getElementById('map-placeholder').style.display='none';
-        const map = document.getElementById('map-frame');
-        map.style.display='block';
-        map.innerHTML = `<iframe title="Map to Repair It Scotland" loading="lazy" style="border:0;width:100%;height:350px;border-radius:12px" src="https://www.google.com/maps?q=2%20Haldane%20Place%2C%20Dundee%2C%20DD3%200JR&output=embed"></iframe>`;
-        localStorage.setItem('map_enabled','1');
-      });
-      if(localStorage.getItem('map_enabled')==='1'){
-        document.getElementById('map-placeholder').style.display='none';
-        const map = document.getElementById('map-frame');
-        map.style.display='block';
-        map.innerHTML = `<iframe title="Map to Repair It Scotland" loading="lazy" style="border:0;width:100%;height:350px;border-radius:12px" src="https://www.google.com/maps?q=2%20Haldane%20Place%2C%20Dundee%2C%20DD3%200JR&output=embed"></iframe>`;
-      }
-    }
 
     // Facebook consent loader
     const fbConsentKey = 'fb_consent_enabled';
