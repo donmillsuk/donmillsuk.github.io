@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<!-- VERSION: v1.7 | Four customer locations added | 2026-09-13 -->
+<!-- VERSION: v1.9 | Mobile readability and navigation improved | 2026-09-13 -->
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <title>Repair It Scotland – Trusted Sewing Machine Repairs in Dundee</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Trusted Sewing Machine Repairs in Dundee. 50 years of hands-on expertise – if it has a needle, I’ll work on it. Call 07577 255713.">
+  <meta name="description" content="Trusted sewing machine repairs in Dundee, Fife and Angus. Over 50 years of hands-on experience, clear estimates and four convenient locations. Call 07577 255713.">
   <meta name="format-detection" content="telephone=no">
 
 <!-- LAST UPDATED: 2026-09-13 -->
-<meta name="site-version" content="v1.7 - 2026-09-13">
+<meta name="site-version" content="v1.9 - 2026-09-13">
 <link rel="canonical" href="https://repairitscotland.com/">
 
 
@@ -19,63 +19,6 @@
 <!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "52a37f6c72884115aa915088f2ee07ee"}'></script>
 <!-- End Cloudflare Web Analytics -->
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do I book a sewing machine repair?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Please call or send a message first to discuss the issue and arrange a time. There is no self-service booking or drop-off without contacting me."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer weekend drop-offs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Weekend drop-offs are not offered. Please call or message to arrange a suitable weekday time."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Which brands do you service?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most major brands including Singer, Brother, Janome, Bernina, Juki and more. If your model is unusual, contact me to confirm."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you repair vintage machines?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. I work on treadle, hand-crank and early electric machines. I handle careful cleaning, servicing and part sourcing when possible."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How long does a typical repair or service take?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most assessments are same or next business day. Turnaround depends on parts and workload. I’ll give you a time estimate after the initial check."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What will it cost?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Pricing depends on the issue and parts required. I provide a clear estimate before I proceed with any work."
-      }
-    }
-  ]
-}
-</script>
 
 <script type="application/ld+json">
 {
@@ -169,7 +112,6 @@
 
     @media (min-width:900px){
       .about-grid{grid-template-columns:7fr 5fr}
-      .contact-grid{grid-template-columns:6fr 6fr}
       .em-grid{grid-template-columns:5fr 7fr}
       .reviews-grid{grid-template-columns:1fr 1fr}
     }
@@ -241,6 +183,7 @@
     .em-call{font-weight:900;font-size:clamp(24px,4.6vw,40px);color:var(--accent-red);margin-top:6px}
     .em-right-gallery{display:flex;gap:14px;justify-content:center;align-items:center;margin-top:14px;flex-wrap:wrap}
     .em-right-gallery img{width:min(46%,360px);height:220px;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
+    .stickybar{display:none}
 
   /* NEW: Address card photo (framed thumbnail) */
 .address-photo{
@@ -262,10 +205,58 @@
 
 /* Responsive hero image overrides */
 @media (max-width: 700px) {
+  body{
+    font-size:18px;
+    padding-bottom:calc(72px + env(safe-area-inset-bottom));
+  }
+  .container{padding:18px}
+  section{padding:38px 0}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:50px;
+    font-size:18px;
+  }
   .hero{
     background: #222 url('assets/img/hero-mobile.jpg') center top / cover no-repeat;
     background-attachment: scroll; /* avoid jank on mobile */
-    min-height: 70vh;
+    min-height: 60vh;
+  }
+  .hero h1{line-height:1.12}
+  .scroll-down{bottom:8px;font-size:56px}
+  .qrimg{display:none}
+  #locations, #contact{scroll-margin-top:12px}
+  .stickybar{
+    position:fixed;
+    z-index:1000;
+    left:0;
+    right:0;
+    bottom:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+    background:#fff;
+    border-top:1px solid var(--border);
+    box-shadow:0 -5px 18px rgba(0,0,0,.14);
+  }
+  .stickybar a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:52px;
+    border-radius:10px;
+    background:var(--brand);
+    color:#fff;
+    font-size:18px;
+    font-weight:900;
+    text-align:center;
+  }
+  .stickybar a:last-child{
+    background:#fff;
+    color:var(--brand);
+    border:2px solid var(--brand);
   }
 }
 @media (min-width: 701px) {
@@ -290,7 +281,7 @@
         <div class="phone">07577 255713</div>
       </div>
       <div class="tagrow">
-        <span class="tag">Dundee & Nearby Areas</span>
+        <span class="tag">Dundee, Fife &amp; Angus</span>
         <span class="tag">All Major Brands</span>
         <span class="tag">Fast, Honest Turnarounds</span>
       </div>
@@ -310,7 +301,7 @@
   <h4>Experience & Location</h4>
   <ul>
     <li>Over 50 years repairing, servicing, and restoring sewing machines of every make and model.</li>
-    <li>Based in Dundee, serving Broughty Ferry, Forfar, Arbroath and surrounding areas.</li>
+    <li>Serving Dundee, Fife and Angus through convenient locations in Dundee, Letham and Kirkcaldy.</li>
     <li>One of the few dedicated sewing machine repair specialists in Scotland.</li>
   </ul>
 
@@ -362,9 +353,48 @@
 
           <!-- NEW: framed thumbnail under the hours -->
           <img src="assets/img/shead.png" alt="Sewing machine repair workspace" class="address-photo">
-          <div class="address-caption">Could be my space—just not yet.</div>
+          <div class="address-caption">Sewing machine repair and servicing.</div>
         </aside>
       </div>
+    </div>
+  </section>
+
+  <!-- CUSTOMER LOCATIONS -->
+  <section id="locations">
+    <div class="container locations-panel" aria-labelledby="locations-title">
+      <h2 id="locations-title">Choose Where to Bring Your Machine</h2>
+
+      <div class="location-list">
+        <article class="location-card">
+          <h3>Dundee Location</h3>
+          <p class="location-address">2 Haldane Place, Dundee, DD3 0JR</p>
+          <div class="location-status appointment">BY APPOINTMENT ONLY</div>
+          <p>Please call or message first to receive the booking-calendar link.</p>
+        </article>
+
+        <article class="location-card">
+          <h3>Letham, Fife Home Workshop</h3>
+          <p class="location-address">Milnholm, The Row, Letham, Cupar, Fife, KY15 7RS</p>
+          <div class="location-status appointment">BY APPOINTMENT ONLY</div>
+          <p>Please call or message first to receive the booking-calendar link.</p>
+        </article>
+
+        <article class="location-card">
+          <h3>Letham Crafts</h3>
+          <p class="location-address">11 Auldbar Road, Letham, Forfar, DD8 2PD</p>
+          <div class="location-status walkin">NO APPOINTMENT NEEDED</div>
+          <p>Drop off or collect your machine during the shop’s normal opening hours.</p>
+        </article>
+
+        <article class="location-card">
+          <h3>Topstitch Kirkcaldy</h3>
+          <p class="location-address">305 High Street, Kirkcaldy, KY1 1JL</p>
+          <div class="location-status walkin">NO APPOINTMENT NEEDED</div>
+          <p>Drop off or collect your machine during the shop’s normal opening hours.</p>
+        </article>
+      </div>
+
+      <p class="locations-note">Every machine is assessed and repaired personally by Don, regardless of which location you choose.</p>
     </div>
   </section>
 
@@ -416,7 +446,7 @@
   <section id="reviews" class="section-alt">
     <div class="container">
       <h2>What Local Customers Say</h2>
-      <p class="lead">A few recent Google reviews from Dundee and nearby areas.</p>
+      <p class="lead">A few recent Google reviews from customers across Dundee and nearby areas.</p>
 
       <div class="reviews-grid">
         <article class="review">
@@ -529,10 +559,10 @@
 
       <details>
         <summary>
-          <span>What areas near Dundee do you service?</span>
+          <span>What areas do you serve?</span>
         </summary>
         <div>
-          <p>I regularly see customers from Broughty Ferry, Arbroath, Forfar, Kirriemuir, Perth, Coupar Angus, Carnoustie, and Monifieth. I can arrange pickup/delivery if needed. No domestic house calls, but I do business site visits case-by-case.</p>
+          <p>I serve customers across Dundee, Fife and Angus, including Broughty Ferry, Kirkcaldy, Cupar, Arbroath, Forfar, Kirriemuir, Coupar Angus, Carnoustie and Monifieth. Pickup and delivery may also be available. I do not provide domestic house calls, but business visits can be considered individually.</p>
         </div>
       </details>
 
@@ -541,7 +571,7 @@
           <span>How much does repair cost?</span>
         </summary>
         <div>
-          <p>It depends on the machine (mechanical/electronic/computerised). Minor fixes can be ~£10; more involved jobs with parts can exceed £100. Most Dundee repairs land around <strong>£40–£70</strong> including standard parts.</p>
+          <p>It depends on whether the machine is mechanical, electronic or computerised and whether parts are required. Minor fixes can be around £10, while more involved jobs can exceed £100. Most repairs are around <strong>£40–£70</strong> including standard parts. You will receive a clear estimate before additional work goes ahead.</p>
         </div>
       </details>
 
@@ -577,7 +607,7 @@
           <span>Do I need an appointment or can I drop in?</span>
         </summary>
         <div>
-          <p>Please <strong>book an appointment</strong> for both drop-off and collection. Booking avoids a wasted trip and ensures someone is ready to receive or return your machine.</p>
+          <p><strong>Dundee and the Letham, Fife home workshop are by appointment only.</strong> Please call or message first and I will send you the booking-calendar link. No appointment is needed at Letham Crafts or Topstitch Kirkcaldy; simply visit during the shop’s normal opening hours.</p>
         </div>
       </details>
 
@@ -603,15 +633,6 @@
         </summary>
         <div>
           <p>Yes—generally a <strong>30-day warranty</strong> on repair work. Supplier warranties apply to parts (labour for replacement not included). Misuse isn’t covered. If a repair is found deficient, I’ll take care of it.</p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span>Can I drop off without an appointment?</span>
-        </summary>
-        <div>
-          <p>Drop-off and collection are by appointment only. Please book before travelling so someone is ready for you.</p>
         </div>
       </details>
 
@@ -651,7 +672,6 @@
     </div>
   </div>
 </section>
-  </section>
 
   <!-- CONTACT -->
   <section id="contact" class="section-alt">
@@ -701,41 +721,6 @@
           </div>
         </div>
 
-        <aside class="locations-panel" aria-labelledby="locations-title">
-          <h2 id="locations-title">Choose Where to Bring Your Machine</h2>
-
-          <div class="location-list">
-            <article class="location-card">
-              <h3>Dundee Location</h3>
-              <p class="location-address">2 Haldane Place, Dundee, DD3 0JR</p>
-              <div class="location-status appointment">BY APPOINTMENT ONLY</div>
-              <p>Please call or message first to receive the booking-calendar link.</p>
-            </article>
-
-            <article class="location-card">
-              <h3>Letham, Fife Home Workshop</h3>
-              <p class="location-address">Milnholm, The Row, Letham, Cupar, Fife, KY15 7RS</p>
-              <div class="location-status appointment">BY APPOINTMENT ONLY</div>
-              <p>Please call or message first to receive the booking-calendar link.</p>
-            </article>
-
-            <article class="location-card">
-              <h3>Letham Crafts</h3>
-              <p class="location-address">11 Auldbar Road, Letham, Forfar, DD8 2PD</p>
-              <div class="location-status walkin">NO APPOINTMENT NEEDED</div>
-              <p>Drop off or collect your machine during the shop’s normal opening hours.</p>
-            </article>
-
-            <article class="location-card">
-              <h3>Topstitch Kirkcaldy</h3>
-              <p class="location-address">305 High Street, Kirkcaldy, KY1 1JL</p>
-              <div class="location-status walkin">NO APPOINTMENT NEEDED</div>
-              <p>Drop off or collect your machine during the shop’s normal opening hours.</p>
-            </article>
-          </div>
-
-          <p class="locations-note">Every machine is assessed and repaired personally by Don, regardless of which location you choose.</p>
-        </aside>
       </div>
     </div>
   </section>
@@ -743,7 +728,7 @@
   <!-- FOOTER -->
 <footer>
   <div class="container" style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap">
-    <div>© <span id="y"></span> Repair It Scotland — <em>Sewing Machine Repair in Dundee</em></div>
+    <div>© <span id="y"></span> Repair It Scotland — <em>Sewing Machine Repair in Dundee, Fife &amp; Angus</em></div>
     <div style="display:flex;gap:12px">
       <a href="privacy.html">Privacy</a>
       <span style="color:#bbb">|</span>
@@ -752,8 +737,11 @@
   </div>
 </footer>
 
-  <!-- Sticky bar (mobile) -->
-  <nav class="stickybar" style="display:none"></nav>
+  <!-- Mobile quick actions -->
+  <nav class="stickybar" aria-label="Quick actions">
+    <a href="tel:+447577255713">Call Don</a>
+    <a href="#locations">Locations</a>
+  </nav>
 
   <script>
     // Footer year
