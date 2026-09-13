@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- VERSION: v1.3 | Under-the-fold scannability restructure | 2026-02-27 -->
+<!-- VERSION: v1.4 | Dundee address and appointment notice update | 2026-09-13 -->
 <html lang="en">
 
 <head>
@@ -9,9 +9,8 @@
   <meta name="description" content="Trusted Sewing Machine Repairs in Dundee. 50 years of hands-on expertise – if it has a needle, I’ll work on it. Call 07577 255713.">
   <meta name="format-detection" content="telephone=no">
 
-<!-- VERSION: v1.2 — Canonical alignment update -->
-<!-- LAST UPDATED: 2026-02-15 -->
-<meta name="site-version" content="v1.2 - 2026-02-15">
+<!-- LAST UPDATED: 2026-09-13 -->
+<meta name="site-version" content="v1.4 - 2026-09-13">
 <link rel="canonical" href="https://repairitscotland.com/">
 
 
@@ -90,15 +89,17 @@
   "priceRange": "££",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "2 Haldane Place",
     "addressLocality": "Dundee",
+    "postalCode": "DD3 0JR",
     "addressRegion": "Scotland",
     "addressCountry": "GB"
   },
   "openingHoursSpecification": [{
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-    "opens": "09:00",
-    "closes": "18:00"
+    "opens": "08:00",
+    "closes": "17:00"
   }],
   "areaServed": [
     "Dundee",
@@ -186,6 +187,20 @@
 
     /* Drop-off note */
     .dropoff-note{font-weight:900;text-align:center;margin-top:10px}
+    .appointment-only{
+      margin:18px 0 10px;
+      padding:12px 14px;
+      border:3px solid var(--accent-red);
+      border-radius:12px;
+      color:var(--accent-red);
+      background:#fff5f5;
+      font-size:clamp(24px,4vw,34px);
+      font-weight:1000;
+      line-height:1.15;
+      letter-spacing:.5px;
+      text-align:center;
+    }
+    .appointment-hours{text-align:center;margin:8px 0}
 
     /* Contact & QR */
     .contact-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
@@ -327,12 +342,13 @@
 
         <aside class="card">
           <h3>Address &amp; Hours</h3>
-          <p><strong>Address:</strong> 4 Saint Lukes Road, Dundee, DD3 0LD</p>
-          <p><strong>Hours:</strong> Mon–Fri 8:00–17:00 (by appointment)</p>
-          <p class="dropoff-note">Please call or message to book a drop-off time so someone’s definitely in. I am a home workshop and not always in.</p>
+          <p><strong>Address:</strong> 2 Haldane Place, Dundee, DD3 0JR</p>
+          <div class="appointment-only" role="note">BY APPOINTMENT ONLY</div>
+          <p class="appointment-hours"><strong>Appointments:</strong> Mon–Fri 8:00–17:00</p>
+          <p class="dropoff-note">Please book before travelling so someone is ready to receive or return your machine.</p>
 
           <!-- NEW: framed thumbnail under the hours -->
-          <img src="assets/img/shead.png" alt="Home workshop bench" class="address-photo">
+          <img src="assets/img/shead.png" alt="Sewing machine repair workspace" class="address-photo">
           <div class="address-caption">Could be my space—just not yet.</div>
         </aside>
       </div>
@@ -500,7 +516,7 @@
           <span>Where can I get my sewing machine repaired in Dundee?</span>
         </summary>
         <div>
-          <p>You can bring your sewing machine to my home workshop in the Downfield area of Dundee. I work from home to keep costs affordable, and there is plenty of parking right outside. Look for the small sign that says <strong>Sewing Machine Repair</strong> — it’s visible from the road.</p>
+          <p>You can bring your sewing machine to Repair It Scotland at <strong>2 Haldane Place, Dundee, DD3 0JR</strong>. Drop-off and collection are by appointment only, so please book before travelling. Look for the Repair It Scotland signage.</p>
         </div>
       </details>
 
@@ -554,7 +570,7 @@
           <span>Do I need an appointment or can I drop in?</span>
         </summary>
         <div>
-          <p>Please <strong>book an appointment</strong> for both drop-off and pickup (home workshop). If you arrive without one and I’m in, I’ll help—but I may be out. Booking avoids wasted trips and guarantees I’m available.</p>
+          <p>Please <strong>book an appointment</strong> for both drop-off and collection. Booking avoids a wasted trip and ensures someone is ready to receive or return your machine.</p>
         </div>
       </details>
 
@@ -588,7 +604,7 @@
           <span>Can I drop off without an appointment?</span>
         </summary>
         <div>
-          <p>Walk-ins aren’t accepted. If you catch me in, I’ll help, but I may be out. Best to book first.</p>
+          <p>Drop-off and collection are by appointment only. Please book before travelling so someone is ready for you.</p>
         </div>
       </details>
 
@@ -680,9 +696,10 @@
 
         <aside class="card">
           <h3>Find Us</h3>
-          <p><strong>Address:</strong> 4 Saint Lukes Road, Dundee, DD3 0LD</p>
-          <p><strong>Hours:</strong> Mon–Fri 8:00–17:00 (by appointment)</p>
-          <p class="dropoff-note">Please call or message to book a drop-off time so someone’s definitely in. I am a home workshop and not always in.</p>
+          <p><strong>Address:</strong> 2 Haldane Place, Dundee, DD3 0JR</p>
+          <div class="appointment-only" role="note">BY APPOINTMENT ONLY</div>
+          <p class="appointment-hours"><strong>Appointments:</strong> Mon–Fri 8:00–17:00</p>
+          <p class="dropoff-note">Please book before travelling so someone is ready to receive or return your machine.</p>
 
           <!-- Map lazy-load button -->
           <div class="mapwrap">
@@ -723,14 +740,14 @@
         document.getElementById('map-placeholder').style.display='none';
         const map = document.getElementById('map-frame');
         map.style.display='block';
-        map.innerHTML = `<iframe title="Map to Repair It Scotland" loading="lazy" style="border:0;width:100%;height:350px;border-radius:12px" src="https://www.google.com/maps?q=4%20Saint%20Lukes%20Road%2C%20Dundee%2C%20DD3%200LD&output=embed"></iframe>`;
+        map.innerHTML = `<iframe title="Map to Repair It Scotland" loading="lazy" style="border:0;width:100%;height:350px;border-radius:12px" src="https://www.google.com/maps?q=2%20Haldane%20Place%2C%20Dundee%2C%20DD3%200JR&output=embed"></iframe>`;
         localStorage.setItem('map_enabled','1');
       });
       if(localStorage.getItem('map_enabled')==='1'){
         document.getElementById('map-placeholder').style.display='none';
         const map = document.getElementById('map-frame');
         map.style.display='block';
-        map.innerHTML = `<iframe title="Map to Repair It Scotland" loading="lazy" style="border:0;width:100%;height:350px;border-radius:12px" src="https://www.google.com/maps?q=4%20Saint%20Lukes%20Road%2C%20Dundee%2C%20DD3%200LD&output=embed"></iframe>`;
+        map.innerHTML = `<iframe title="Map to Repair It Scotland" loading="lazy" style="border:0;width:100%;height:350px;border-radius:12px" src="https://www.google.com/maps?q=2%20Haldane%20Place%2C%20Dundee%2C%20DD3%200JR&output=embed"></iframe>`;
       }
     }
 
