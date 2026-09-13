@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- VERSION: v1.6 | Latest Google reviews update | 2026-09-13 -->
+<!-- VERSION: v1.7 | Four customer locations added | 2026-09-13 -->
 <html lang="en">
 
 <head>
@@ -10,7 +10,7 @@
   <meta name="format-detection" content="telephone=no">
 
 <!-- LAST UPDATED: 2026-09-13 -->
-<meta name="site-version" content="v1.6 - 2026-09-13">
+<meta name="site-version" content="v1.7 - 2026-09-13">
 <link rel="canonical" href="https://repairitscotland.com/">
 
 
@@ -202,6 +202,18 @@
     }
     .appointment-hours{text-align:center;margin:8px 0}
 
+    /* Customer locations */
+    .locations-panel h2{margin-bottom:16px}
+    .location-list{display:grid;gap:14px}
+    .location-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+    .location-card h3{margin:0 0 6px;font-size:21px}
+    .location-address{margin:0 0 12px;font-weight:700}
+    .location-status{display:inline-block;margin:0 0 10px;padding:7px 10px;border-radius:8px;font-weight:900;line-height:1.2}
+    .location-status.appointment{color:#b42318;background:#fff1f0;border:2px solid #e5383b}
+    .location-status.walkin{color:#1b5e20;background:#f0f8f1;border:2px solid #2e7d32}
+    .location-card p:last-child{margin-bottom:0}
+    .locations-note{margin:16px 0 0;padding:14px;border-left:4px solid var(--brand);background:#fff;font-weight:700}
+
     /* Contact & QR */
     .contact-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
     .qrimg{width:140px;height:140px;border:1px solid #e0e0e0;border-radius:12px;background:#fff;object-fit:contain;padding:6px}
@@ -342,7 +354,7 @@
         </div>
 
         <aside class="card">
-          <h3>Address &amp; Hours</h3>
+          <h3>Dundee Location</h3>
           <p><strong>Address:</strong> 2 Haldane Place, Dundee, DD3 0JR</p>
           <div class="appointment-only" role="note">BY APPOINTMENT ONLY</div>
           <p class="appointment-hours"><strong>Appointments:</strong> Mon–Fri 8:00–17:00</p>
@@ -689,21 +701,40 @@
           </div>
         </div>
 
-        <aside class="card">
-          <h3>Find Us</h3>
-          <p><strong>Address:</strong> 2 Haldane Place, Dundee, DD3 0JR</p>
-          <div class="appointment-only" role="note">BY APPOINTMENT ONLY</div>
-          <p class="appointment-hours"><strong>Appointments:</strong> Mon–Fri 8:00–17:00</p>
-          <p class="dropoff-note">Please book before travelling so someone is ready to receive or return your machine.</p>
+        <aside class="locations-panel" aria-labelledby="locations-title">
+          <h2 id="locations-title">Choose Where to Bring Your Machine</h2>
 
-          <!-- Map lazy-load button -->
-          <div class="mapwrap">
-            <div class="map-placeholder" id="map-placeholder">
-              <div>📍 Google Map is disabled until you click</div>
-              <button class="btn secondary" id="show-map">Click to Show Map</button>
-            </div>
-            <div id="map-frame" style="display:none;margin-top:12px"></div>
+          <div class="location-list">
+            <article class="location-card">
+              <h3>Dundee Location</h3>
+              <p class="location-address">2 Haldane Place, Dundee, DD3 0JR</p>
+              <div class="location-status appointment">BY APPOINTMENT ONLY</div>
+              <p>Please call or message first to receive the booking-calendar link.</p>
+            </article>
+
+            <article class="location-card">
+              <h3>Letham, Fife Home Workshop</h3>
+              <p class="location-address">Milnholm, The Row, Letham, Cupar, Fife, KY15 7RS</p>
+              <div class="location-status appointment">BY APPOINTMENT ONLY</div>
+              <p>Please call or message first to receive the booking-calendar link.</p>
+            </article>
+
+            <article class="location-card">
+              <h3>Letham Crafts</h3>
+              <p class="location-address">11 Auldbar Road, Letham, Forfar, DD8 2PD</p>
+              <div class="location-status walkin">NO APPOINTMENT NEEDED</div>
+              <p>Drop off or collect your machine during the shop’s normal opening hours.</p>
+            </article>
+
+            <article class="location-card">
+              <h3>Topstitch Kirkcaldy</h3>
+              <p class="location-address">305 High Street, Kirkcaldy, KY1 1JL</p>
+              <div class="location-status walkin">NO APPOINTMENT NEEDED</div>
+              <p>Drop off or collect your machine during the shop’s normal opening hours.</p>
+            </article>
           </div>
+
+          <p class="locations-note">Every machine is assessed and repaired personally by Don, regardless of which location you choose.</p>
         </aside>
       </div>
     </div>
